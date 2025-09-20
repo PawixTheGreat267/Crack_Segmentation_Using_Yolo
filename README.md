@@ -1,52 +1,91 @@
 # Crack Segmentation using YOLOv8seg
 
 ## Project Overview
+This project focuses on the challenging task of **crack segmentation on surfaces**. Cracks are a critical indicator of structural integrity issues, and their precise detection and segmentation are essential for automated inspection systems.
 
-This project focuses on the challenging task of crack segmentation on surfaces. Cracks are a critical indicator of structural integrity issues, and their precise detection and segmentation are essential for automated inspection systems.
+To address this, I used the **YOLOv8seg** model from the Ultralytics framework. YOLOv8seg is a state-of-the-art model for instance segmentation, capable of not only detecting cracks but also producing pixel-accurate segmentation masks.  
 
-To solve this problem, I've leveraged the cutting-edge capabilities of the **YOLOv8seg** model from the Ultralytics framework. YOLOv8seg is a state-of-the-art model for instance segmentation, which not only detects objects but also generates a pixel-perfect segmentation mask for each object instance.
+The model was trained on a **custom dataset** carefully annotated to outline cracks across different surfaces.
 
-The model was trained on a custom dataset, carefully annotated to outline cracks on various surfaces.
+---
 
 ## Training and Results
+The model was trained for **30 epochs**, yielding strong results in both bounding box detection and segmentation mask generation.
 
-The YOLOv8seg model was trained for **30 epochs** on a custom crack segmentation dataset. The training process yielded outstanding results, demonstrating the model's ability to learn and accurately segment cracks with a high degree of precision.
-
-### Performance Analysis
-
-The following plots illustrate the model's performance throughout the training process.
-
+### Overall Training Results
 ![YOLOv8seg Training Results](results.jpg)
 
-#### Key Performance Indicators
+- **Loss Reduction**: Training and validation losses consistently decreased, showing stable learning without major overfitting.  
+- **High mAP Scores**:  
+  - `mAP50(M)` – very high at IoU=0.5, meaning the model is excellent at identifying cracks.  
+  - `mAP50-95(M)` – strong across stricter IoU thresholds, showing precise localization.  
 
-- **Loss Reduction**: The training and validation loss curves show a consistent and sharp decrease, indicating that the model was successfully learning and converging towards a robust solution without significant overfitting.
-- **High `mAP` Scores**: The Mean Average Precision (mAP) for both bounding boxes and segmentation masks improved dramatically over the 30 epochs.
-    - **`mAP50(M)`**: The mAP for segmentation masks at an IoU threshold of 0.5 achieved a very high final value, signifying that the model is highly effective at identifying cracks and producing accurate masks.
-    - **`mAP50-95(M)`**: The mAP averaged across stricter IoU thresholds (0.5 to 0.95) also reached an impressive value, which is a strong testament to the model's ability to localize cracks with great precision.
+These results confirm that the model performs well and generalizes effectively.
 
-The rapid and significant improvement in both loss and mAP scores confirms that the model is performing exceptionally well on this task, successfully creating a reliable crack segmentation solution.
+---
+
+## Detailed Performance Analysis
+
+### Training Metrics (`runs/segment/train`)
+#### Bounding Box
+- F1-Score  
+![Box F1](runs/segment/train/BoxF1_curve.png)  
+- Precision  
+![Box Precision](runs/segment/train/BoxP_curve.png)  
+- Recall  
+![Box Recall](runs/segment/train/BoxR_curve.png)  
+- Precision-Recall  
+![Box PR](runs/segment/train/BoxPR_curve.png)  
+
+#### Segmentation Mask
+- F1-Score  
+![Mask F1](runs/segment/train/MaskF1_curve.png)  
+- Precision  
+![Mask Precision](runs/segment/train/MaskP_curve.png)  
+- Recall  
+![Mask Recall](runs/segment/train/MaskR_curve.png)  
+- Precision-Recall  
+![Mask PR](runs/segment/train/MaskPR_curve.png)  
+
+#### Confusion Matrix
+- Raw  
+![Confusion Matrix](runs/segment/train/confusion_matrix.png)  
+- Normalized  
+![Confusion Matrix Normalized](runs/segment/train/confusion_matrix_normalized.png)  
+
+#### Label Visualization
+![Labels](runs/segment/train/labels.jpg)  
+
+---
+
+### Validation Metrics (`runs/segment/val`)
+Validation plots confirm that the model maintains strong performance outside of training:
+
+- F1-Score (Box)  
+![Validation Box F1](runs/segment/val/BoxF1_curve.png)  
+- Precision-Recall (Mask)  
+![Validation Mask PR](runs/segment/val/MaskPR_curve.png)  
+
+---
 
 ## Key Metrics Explained
+- **Loss** – model error (lower is better).  
+- **Precision** – ratio of correct positive predictions.  
+- **Recall** – ratio of actual positives correctly predicted.  
+- **mAP** – Mean Average Precision, standard metric for detection/segmentation.  
+  - `mAP50` – lenient IoU=0.5 threshold.  
+  - `mAP50-95` – stricter IoU thresholds, more robust evaluation.  
+- **(B)** – Bounding Box metrics.  
+- **(M)** – Mask (segmentation) metrics.  
 
-For those new to computer vision and instance segmentation, here is a brief explanation of the key metrics shown in the plots:
-
-- **Loss**: A measure of the model's error. Lower is better.
-- **Precision**: Out of all the model's positive predictions, how many were correct?
-- **Recall**: Out of all the actual positives, how many did the model correctly identify?
-- **mAP**: Mean Average Precision, the industry-standard metric for object detection and segmentation.
-    - **`mAP50`**: Evaluates performance using a lenient overlap threshold (IoU=0.5).
-    - **`mAP50-95`**: Evaluates performance using a range of stricter overlap thresholds, giving a more complete picture of localization accuracy.
-- **(B)**: Metrics related to the predicted **Bounding Boxes**.
-- **(M)**: Metrics related to the predicted **Segmentation Masks**.
+---
 
 ## How to Get Started
+To replicate these results or use the trained model:  
 
-To replicate these results or use the trained model, you will need to:
+1. Clone this repository.  
+2. Install dependencies (YOLOv8, PyTorch, etc.).  
+3. Prepare your dataset in YOLO format.  
+4. Run the training script with your configuration.  
 
-1.  Clone this repository.
-2.  Install the required dependencies (YOLOv8, PyTorch, etc.).
-3.  Place your dataset in the correct format (e.g., YOLO format).
-4.  Run the training script with the appropriate configuration.
-
-_(Instructions on setting up the environment and running the training/inference scripts will be provided here)_
+_(Setup instructions and inference examples will be added here.)_  
