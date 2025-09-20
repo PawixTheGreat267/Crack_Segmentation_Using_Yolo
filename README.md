@@ -13,7 +13,7 @@ The model was trained on a **custom dataset** carefully annotated to outline cra
 The model was trained for **30 epochs**, yielding strong results in both bounding box detection and segmentation mask generation.
 
 ### Overall Training Results
-![YOLOv8seg Training Results](results.jpg)
+![YOLOv8seg Training Results](runs/segment/train/results.jpg)
 
 - **Loss Reduction**: Training and validation losses consistently decreased, showing stable learning without major overfitting.  
 - **High mAP Scores**:  
