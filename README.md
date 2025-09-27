@@ -78,6 +78,15 @@ Validation plots confirm that the model maintains strong performance outside of 
 - **(B)** – Bounding Box metrics.  
 - **(M)** – Mask (segmentation) metrics.  
 
+
+## Deployment Results
+
+![Result1](runs\results\output1.png)
+
+![Result2](runs\results\output2.png)
+
+![Result3](runs\results\output3.png)
+
 ---
 
 ## How to Get Started
