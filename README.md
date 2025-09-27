@@ -81,11 +81,11 @@ Validation plots confirm that the model maintains strong performance outside of 
 
 ## Deployment Results
 
-![Result1](runs\results\output1.png)
+![Result1](runs/results/output1.png)
 
-![Result2](runs\results\output2.png)
+![Result2](runs/results/output2.png)
 
-![Result3](runs\results\output3.png)
+![Result3](runs/results/output3.png)
 
 ---
 
